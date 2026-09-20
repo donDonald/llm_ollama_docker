@@ -11,6 +11,14 @@ services:
         volumes:
             - ollama_data:/root/.ollama
         restart: unless-stopped
+        # If NVIDIA GPU is available, uncomment the following to enable GPU acceleration
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: all
+                          capabilities: [gpu]
 
 
 
