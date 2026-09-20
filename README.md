@@ -93,6 +93,9 @@ Sun Sep 20 18:04:44 2026
 
 
 # To lauch
+The startup script will probe where NVIDIA GPU is availabe.\
+If is's so - will start NVIDIA GPU setup.\
+Otherwise CPU setup will be started.
 ```
 bash ./up.sh
 ```
