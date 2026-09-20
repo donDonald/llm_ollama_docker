@@ -20,6 +20,78 @@ Ollama is a free, open-source platform that lets you download, manage, and run l
 
 
 
+# Setup
+
+
+
+
+## Setup NVIDIA GPU support
+In case you have NVIDIA GPU extra setup steps.\
+Otherwise these steps can be ignored.
+
+
+
+
+## Append NVIDIA repository
+```
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+
+
+
+## Install NVIDIA Container Toolkit
+```
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
+```
+
+
+
+
+## Configure NVIDIA Container Toolkit
+```
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+```
+
+
+
+
+## Test GPU integration
+```
+docker run --gpus all nvidia/cuda:11.5.2-base-ubuntu20.04 nvidia-smi
+```
+Result:
+```
+Sun Sep 20 18:04:44 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.03             Driver Version: 580.159.03     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 5080        Off |   00000000:01:00.0 Off |                  N/A |
+|  0%   29C    P8             11W /  360W |       2MiB /  16303MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+```
+
+
+
+
 # To lauch
 ```
 bash ./up.sh
