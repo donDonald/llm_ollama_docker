@@ -130,9 +130,12 @@ Upon 1st startup have to create user account:
 
 
 # Downloading models
-Next step to download desired model, ket it be very basic llama3.2:
+Next step to download desired model, let it be very basic llama3.2:
 <div align="center"><img width="70%" src="images/6.png"></div>
 <div align="center"><img width="70%" src="images/7.png"></div>
+
+List of available models:
+[Ollama models library](https://ollama.com/library)
 
 
 

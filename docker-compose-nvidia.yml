@@ -4,7 +4,7 @@ services:
 
 
     ollama:
-        image: ollama/ollama:latest
+        image: ollama/ollama:0.40.2
         container_name: ollama
         ports:
             - "11434:11434"
@@ -24,7 +24,7 @@ services:
 
 
     open-webui:
-        image: ghcr.io/open-webui/open-webui:main
+        image: ghcr.io/open-webui/open-webui:0.11.4
         container_name: open-webui
         ports:
             - "3531:8080"
